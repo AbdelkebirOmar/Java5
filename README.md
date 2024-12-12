@@ -299,13 +299,3 @@ Enables players to register, update profiles, and interact with other players.
 - **Maven**: Build automation tool.
 - **H2**: Embedded database for development and testing.
 
-## Contributing
-1. Fork the repository.
-2. Create a feature branch.
-3. Commit changes and open a pull request.
-
-## License
-This project is licensed under the MIT License.
-
-## Contact
-For inquiries, please contact [Your Name] at [Your Email].
