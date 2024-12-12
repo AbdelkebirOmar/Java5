@@ -39,11 +39,12 @@ public class PlayerController {
                      .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 
-    // Mettre à jour un joueur
+    // Mettre à jour uniquement le score et augmenter le niveau du joueur
     @PutMapping("/{id}")
     public ResponseEntity<Player> updatePlayer(@PathVariable Long id, @RequestBody Player updatedPlayer) {
         try {
-            Player updated = playerService.updatePlayer(id, updatedPlayer);
+            // Mettre à jour les stats du joueur : score et niveau
+            Player updated = playerService.updatePlayerStats(id, updatedPlayer.getTotalPoints());
             return ResponseEntity.ok(updated);
         } catch (RuntimeException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();

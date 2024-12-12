@@ -17,4 +17,5 @@ public class FriendController {
         friendService.addFriend(playerId, friendId);
         return "Ami ajouté avec succès!";
     }
+    
 }

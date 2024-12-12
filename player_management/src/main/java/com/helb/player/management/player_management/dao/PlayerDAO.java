@@ -32,21 +32,19 @@ public class PlayerDAO implements IPlayerDAO {
         return playerRepository.findById(id);
     }
 
-    // Mettre à jour un joueur
     @Override
     public Player updatePlayer(Long id, Player updatedPlayer) {
-        return playerRepository.findById(id)
-                .map(player -> {
-                    player.setName(updatedPlayer.getName());
-                    player.setNickname(updatedPlayer.getNickname());
-                    player.setEmail(updatedPlayer.getEmail());
-                    player.setLevel(updatedPlayer.getLevel());
-                    player.setTotalPoints(updatedPlayer.getTotalPoints());
-                    return playerRepository.save(player);  // Sauvegarder les modifications
-                })
+        // Trouver le joueur existant
+        Player existingPlayer = playerRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Player not found"));
-    }
 
+        // Mettre à jour seulement les champs nécessaires : le score et le niveau
+        existingPlayer.setTotalPoints(updatedPlayer.getTotalPoints());
+        existingPlayer.setLevel(updatedPlayer.getLevel());
+
+        // Sauvegarder les changements
+        return playerRepository.save(existingPlayer);
+    }
     // Supprimer un joueur
     @Override
     public void deletePlayer(Long id) {

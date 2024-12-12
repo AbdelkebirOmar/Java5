@@ -32,4 +32,6 @@ public class ParticipationDAO {
     public boolean existsByGameIdAndPlayerId(Long gameId, Long playerId) {
         return participationRepository.existsByGameIdAndPlayerId(gameId, playerId);
     }
+
+    
 }

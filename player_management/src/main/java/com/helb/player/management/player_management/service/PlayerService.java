@@ -36,11 +36,21 @@ public class PlayerService {
         return playerDAO.getPlayerById(id);
     }
 
-    // Mettre à jour un joueur
-    public Player updatePlayer(Long id, Player updatedPlayer) {
-        return playerDAO.updatePlayer(id, updatedPlayer);
-    }
+    // Mettre à jour le score et augmenter le niveau
+    public Player updatePlayerStats(Long playerId, int scoreToAdd) {
+        // Récupérer le joueur par son ID
+        Player player = playerDAO.getPlayerById(playerId)
+                .orElseThrow(() -> new RuntimeException("Player not found with ID: " + playerId));
 
+        // Ajouter le score
+        player.setTotalPoints(player.getTotalPoints() + scoreToAdd);
+
+        // Incrémenter le niveau
+        player.setLevel(player.getLevel() + 1);
+
+        // Enregistrer les modifications
+        return playerDAO.updatePlayer(playerId, player);
+    }
     // Supprimer un joueur
     public void deletePlayer(Long id) {
         playerDAO.deletePlayer(id);

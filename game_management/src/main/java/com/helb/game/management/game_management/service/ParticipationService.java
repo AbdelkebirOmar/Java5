@@ -10,10 +10,12 @@ public class ParticipationService {
 
     private final ParticipationDAO participationDAO;
     private final PlayerService playerService;  // Injection du service PlayerService
+    private final GameService gameService;
 
-    public ParticipationService(ParticipationDAO participationDAO, PlayerService playerService) {
+    public ParticipationService(ParticipationDAO participationDAO, PlayerService playerService, GameService gameService) {
         this.participationDAO = participationDAO;
         this.playerService = playerService;
+        this.gameService = gameService;
     }
 
     public Participation createParticipation(ParticipationDTO participationDTO) {
@@ -21,16 +23,23 @@ public class ParticipationService {
         if (!playerService.checkIfPlayerExists(participationDTO.getPlayerId())) {
             throw new RuntimeException("Player with ID " + participationDTO.getPlayerId() + " does not exist");
         }
-
-        // Créer la participation si le joueur existe
+    
+        // Vérifier si le jeu existe
+        if (!gameService.checkIfGameExists(participationDTO.getGameId())) {
+            throw new RuntimeException("Game with ID " + participationDTO.getGameId() + " does not exist");
+        }
+    
+        // Créer la participation si le joueur et le jeu existent
         Participation participation = new Participation();
+        playerService.addPointsToPlayer(participationDTO.getPlayerId(), participationDTO.getScore());
         participation.setGameId(participationDTO.getGameId());
         participation.setPlayerId(participationDTO.getPlayerId());
         participation.setScore(participationDTO.getScore());
         participation.setWin(participationDTO.isWin());
-
+    
         return participationDAO.save(participation);
     }
+    
 
     public Participation getParticipationById(Long id) {
         return participationDAO.findById(id).orElseThrow(() -> new RuntimeException("Participation not found"));

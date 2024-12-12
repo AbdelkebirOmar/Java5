@@ -56,4 +56,8 @@ public class GameService {
     public List<Game> getAllGames() {
         return gameDAO.findAll();
     }
+    public boolean checkIfGameExists(Long gameId) {
+        return gameDAO.existsById(gameId);
+    }
+    
 }
