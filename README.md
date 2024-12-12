@@ -84,19 +84,7 @@ root/
      - **Game Management** : `http://localhost:8080/games`
      - **Player Management** : `http://localhost:8081/api/players`
 
-7. **Tests**:
-   - Pour exécuter les tests unitaires :
-     ```bash
-     mvn test
-     ```
 
-8. **Accès à la base de données (H2 Database)**:
-   - L'application utilise une base de données H2 (en mémoire) par défaut. 
-   - Vous pouvez accéder à la console H2 à l'URL suivante :
-     ```
-     http://localhost:8080/h2-console
-     ```
-     
 ## Endpoints
 
 ### **Game Endpoints**
