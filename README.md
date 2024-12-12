@@ -43,47 +43,46 @@ root/
 ```
 ## Installation Guide
 
-1. **Prérequis**:
-   - **Java 17** ou supérieur
-   - **Maven** (pour la gestion des dépendances et la compilation du projet)
-   - **Git** (pour cloner le dépôt)
-   - **IDE** (comme IntelliJ IDEA ou Eclipse) - optionnel mais recommandé
+1. **Prerequisites**:
+   - **Java 17** or higher
+   - **Maven** (for dependency management and project build)
+   - **Git** (for cloning the repository)
+   - **IDE** (like IntelliJ IDEA or Eclipse) - optional but recommended
 
-2. **Clonage du projet**:
+2. **Clone the project**:
    ```bash
    git clone [https://github.com/AbdelkebirOmar/Java5.git]
    ```
 
-3. **Structure du projet**:
-   Le projet est divisé en deux modules principaux :
-   - **game_management** : Gestion des jeux et des participations.
-   - **player_management** : Gestion des joueurs et des relations d'amis.
+3. **Project structure**:
+   The project is divided into two main modules:
+   - **game_management**: Manages games and participations.
+   - **player_management**: Manages players and friend relationships.
 
-4. **Compilation et construction**:
-   Accédez à chaque répertoire de module (`game_management` et `player_management`) et exécutez :
+4. **Build and compile the project**:
+   Navigate to each module directory (`game_management` and `player_management`) and run:
    ```bash
    mvn clean install
    ```
 
-5. **Exécution de l'application**:
-   Pour lancer l'application, exécutez le fichier **main** du module :
-   - Pour **game_management** :
+5. **Run the application**:
+   To run the application, execute the **main** file of the module:
+   - For **game_management** :
      ```bash
      cd game_management
      mvn spring-boot:run
      ```
 
-   - Pour **player_management** :
+   - For **player_management** :
      ```bash
      cd player_management
      mvn spring-boot:run
      ```
 
-6. **Accès aux endpoints**:
-   - Par défaut, l'API sera accessible à :
-     - **Game Management** : `http://localhost:8080/games`
-     - **Player Management** : `http://localhost:8081/api/players`
-
+6. **Access the endpoints**:
+   - By default, the API will be accessible at:
+     - **Game Management**: `http://localhost:8080/games`
+     - **Player Management**: `http://localhost:8081/api/players`
 
 ## Endpoints
 
