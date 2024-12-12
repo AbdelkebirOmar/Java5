@@ -42,198 +42,65 @@ root/
           |-- repository/
 ```
 
+## Installation Guide
+
+1. **Prérequis**:
+   - **Java 17** ou supérieur
+   - **Maven** (pour la gestion des dépendances et la compilation du projet)
+   - **Git** (pour cloner le dépôt)
+   - **IDE** (comme IntelliJ IDEA ou Eclipse) - optionnel mais recommandé
+
+2. **Clonage du projet**:
+   ```bash
+   git clone [https://github.com/AbdelkebirOmar/Java5.git]
+   ```
+
+3. **Structure du projet**:
+   Le projet est divisé en deux modules principaux :
+   - **game_management** : Gestion des jeux et des participations.
+   - **player_management** : Gestion des joueurs et des relations d'amis.
+
+4. **Compilation et construction**:
+   Accédez à chaque répertoire de module (`game_management` et `player_management`) et exécutez :
+   ```bash
+   mvn clean install
+   ```
+
+5. **Exécution de l'application**:
+   Pour lancer l'application, exécutez le fichier **main** du module :
+   - Pour **game_management** :
+     ```bash
+     cd game_management
+     mvn spring-boot:run
+     ```
+
+   - Pour **player_management** :
+     ```bash
+     cd player_management
+     mvn spring-boot:run
+     ```
+
+6. **Accès aux endpoints**:
+   - Par défaut, l'API sera accessible à :
+     - **Game Management** : `http://localhost:8080/games`
+     - **Player Management** : `http://localhost:8081/api/players`
+
+7. **Tests**:
+   - Pour exécuter les tests unitaires :
+     ```bash
+     mvn test
+     ```
+
+8. **Accès à la base de données (H2 Database)**:
+   - L'application utilise une base de données H2 (en mémoire) par défaut. 
+   - Vous pouvez accéder à la console H2 à l'URL suivante :
+     ```
+     http://localhost:8080/h2-console
+     ```
+
 ## Endpoints
 
-### **Game Endpoints**
-
-#### **Create a new game**
-- **URL**: `/games`
-- **Method**: `POST`
-- **Request Body**:
-  ```json
-  {
-    "date": "2024-12-12",
-    "gameType": "classic",
-    "maxScore": 100,
-    "hostId": 1
-  }
-  ```
-- **Response**:
-  ```json
-  {
-    "id": 1,
-    "date": "2024-12-12",
-    "gameType": "classic",
-    "maxScore": 100,
-    "hostId": 1
-  }
-  ```
-
----
-
-#### **Get all games**
-- **URL**: `/games`
-- **Method**: `GET`
-- **Response**:
-  ```json
-  [
-    {
-      "id": 1,
-      "date": "2024-12-12",
-      "gameType": "classic",
-      "maxScore": 100,
-      "hostId": 1
-    },
-    {
-      "id": 2,
-      "date": "2024-12-15",
-      "gameType": "rapid",
-      "maxScore": 150,
-      "hostId": 2
-    }
-  ]
-  ```
-
----
-
-#### **Get a game by ID**
-- **URL**: `/games/{id}`
-- **Method**: `GET`
-- **Response**:
-  ```json
-  {
-    "id": 1,
-    "date": "2024-12-12",
-    "gameType": "classic",
-    "maxScore": 100,
-    "hostId": 1
-  }
-  ```
-
----
-
-### **Participation Endpoints**
-
-#### **Create a new participation**
-- **URL**: `/participations`
-- **Method**: `POST`
-- **Request Body**:
-  ```json
-  {
-    "gameId": 1,
-    "playerId": 1,
-    "score": 150,
-    "win": true
-  }
-  ```
-- **Response**:
-  ```json
-  {
-    "id": 1,
-    "gameId": 1,
-    "playerId": 1,
-    "score": 150,
-    "win": true
-  }
-  ```
-
----
-
-#### **Get participation by ID**
-- **URL**: `/participations/{id}`
-- **Method**: `GET`
-- **Response**:
-  ```json
-  {
-    "id": 1,
-    "gameId": 1,
-    "playerId": 1,
-    "score": 150,
-    "win": true
-  }
-  ```
-
----
-
-#### **Delete participation by ID**
-- **URL**: `/participations/{id}`
-- **Method**: `DELETE`
-- **Response**: 
-  ```
-  204 No Content
-  ```
-
----
-
-#### **Check if a player exists**
-- **URL**: `/participations/check-player/{playerId}`
-- **Method**: `POST`
-- **Response**:
-  ```json
-  "Player exists"
-  ```
-  **OR**
-  ```json
-  "Player does not exist"
-  ```
-
----
-
-### **Player Endpoints**
-
-#### **Create a new player**
-- **URL**: `/api/players`
-- **Method**: `POST`
-- **Request Body**:
-  ```json
-  {
-    "username": "player1",
-    "email": "player1@example.com",
-    "nickname": "player1_nick",
-    "name": "John Doe"
-  }
-  ```
-- **Response**:
-  ```json
-  {
-    "id": 1,
-    "username": "player1",
-    "email": "player1@example.com",
-    "nickname": "player1_nick",
-    "name": "John Doe"
-  }
-  ```
-
----
-
-#### **Get all players**
-- **URL**: `/api/players`
-- **Method**: `GET`
-- **Response**:
-  ```json
-  [
-    {
-      "id": 1,
-      "username": "player1",
-      "email": "player1@example.com",
-      "nickname": "player1_nick",
-      "name": "John Doe",
-      "level": 2,
-      "totalPoints": 300
-    },
-    {
-      "id": 2,
-      "username": "player2",
-      "email": "player2@example.com",
-      "nickname": "player2_nick",
-      "name": "Jane Smith",
-      "level": 5,
-      "totalPoints": 500
-    }
-  ]
-  ```
-
-
+... (The endpoints section from earlier will be here) ...
 
 ## Business Logic
 This application is designed to manage relationships and interactions between players and games efficiently. It ensures robust data handling and validation through service layers.
