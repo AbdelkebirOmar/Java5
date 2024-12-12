@@ -41,7 +41,6 @@ root/
           |-- dto/
           |-- repository/
 ```
-
 ## Installation Guide
 
 1. **Prérequis**:
@@ -97,10 +96,190 @@ root/
      ```
      http://localhost:8080/h2-console
      ```
-
+     
 ## Endpoints
 
-... (The endpoints section from earlier will be here) ...
+### **Game Endpoints**
+
+#### **Create a new game**
+- **URL**: `/games`
+- **Method**: `POST`
+- **Request Body**:
+  ```json
+  {
+    "date": "2024-12-12",
+    "gameType": "classic",
+    "maxScore": 100,
+    "hostId": 1
+  }
+  ```
+- **Response**:
+  ```json
+  {
+    "id": 1,
+    "date": "2024-12-12",
+    "gameType": "classic",
+    "maxScore": 100,
+    "hostId": 1
+  }
+  ```
+
+---
+
+#### **Get all games**
+- **URL**: `/games`
+- **Method**: `GET`
+- **Response**:
+  ```json
+  [
+    {
+      "id": 1,
+      "date": "2024-12-12",
+      "gameType": "classic",
+      "maxScore": 100,
+      "hostId": 1
+    },
+    {
+      "id": 2,
+      "date": "2024-12-15",
+      "gameType": "rapid",
+      "maxScore": 150,
+      "hostId": 2
+    }
+  ]
+  ```
+
+---
+
+#### **Get a game by ID**
+- **URL**: `/games/{id}`
+- **Method**: `GET`
+- **Response**:
+  ```json
+  {
+    "id": 1,
+    "date": "2024-12-12",
+    "gameType": "classic",
+    "maxScore": 100,
+    "hostId": 1
+  }
+  ```
+
+---
+
+### **Participation Endpoints**
+
+#### **Create a new participation**
+- **URL**: `/participations`
+- **Method**: `POST`
+- **Request Body**:
+  ```json
+  {
+    "gameId": 1,
+    "playerId": 1,
+    "score": 150,
+    "win": true
+  }
+  ```
+- **Response**:
+  ```json
+  {
+    "id": 1,
+    "gameId": 1,
+    "playerId": 1,
+    "score": 150,
+    "win": true
+  }
+  ```
+
+---
+
+#### **Get participation by ID**
+- **URL**: `/participations/{id}`
+- **Method**: `GET`
+- **Response**:
+  ```json
+  {
+    "id": 1,
+    "gameId": 1,
+    "playerId": 1,
+    "score": 150,
+    "win": true
+  }
+  ```
+
+
+---
+
+#### **Check if a player exists**
+- **URL**: `/participations/check-player/{playerId}`
+- **Method**: `POST`
+- **Response**:
+  ```json
+  "Player exists"
+  ```
+  **OR**
+  ```json
+  "Player does not exist"
+  ```
+
+---
+
+### **Player Endpoints**
+
+#### **Create a new player**
+- **URL**: `/api/players`
+- **Method**: `POST`
+- **Request Body**:
+  ```json
+  {
+    "username": "player1",
+    "email": "player1@example.com",
+    "nickname": "player1_nick",
+    "name": "John Doe"
+  }
+  ```
+- **Response**:
+  ```json
+  {
+    "id": 1,
+    "username": "player1",
+    "email": "player1@example.com",
+    "nickname": "player1_nick",
+    "name": "John Doe"
+  }
+  ```
+
+---
+
+#### **Get all players**
+- **URL**: `/api/players`
+- **Method**: `GET`
+- **Response**:
+  ```json
+  [
+    {
+      "id": 1,
+      "username": "player1",
+      "email": "player1@example.com",
+      "nickname": "player1_nick",
+      "name": "John Doe",
+      "level": 2,
+      "totalPoints": 300
+    },
+    {
+      "id": 2,
+      "username": "player2",
+      "email": "player2@example.com",
+      "nickname": "player2_nick",
+      "name": "Jane Smith",
+      "level": 5,
+      "totalPoints": 500
+    }
+  ]
+  ```
+
+
 
 ## Business Logic
 This application is designed to manage relationships and interactions between players and games efficiently. It ensures robust data handling and validation through service layers.
